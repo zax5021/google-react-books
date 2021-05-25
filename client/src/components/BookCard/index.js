@@ -1,19 +1,9 @@
-function BookCard({ book }) {
-  const {
-    title,
-    authors,
-    description,
-    image,
-    infoLink: link,
-  } = book.volumeInfo;
+function BookCard({ title, authors, description, image, link }) {
   return (
     <div className="card mb-3">
       <div className="row align-items-center">
         <div className="col-md-2 mr-2 ml-2">
-          <img
-            src="http://books.google.com/books/content?id=yM-MPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-            alt={`thumbnail of ${title}`}
-          />
+          <img src={image} alt={`thumbnail of ${title}`} />
         </div>
         <div className="col-md-9">
           <div className="card-body">

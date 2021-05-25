@@ -5,7 +5,7 @@ function BookList({ books }) {
   return (
     <Section title="Results">
       {books.length > 0 ? (
-        books.map((book) => <BookCard key={book.id} book={book} />)
+        books.map((book) => <BookCard {...book} />)
       ) : (
         <p>
           No Results (if you can't think of anything, I recommend Harry

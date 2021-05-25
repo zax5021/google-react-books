@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
+import { searchForBooks } from "../../util/googleBooksApi";
 import Hero from "../Hero";
 import BookList from "../BookList";
 import SearchForm from "../SearchForm";
@@ -8,18 +8,23 @@ import Wrapper from "../Wrapper";
 function SearchPage() {
   const [search, setSearch] = useState("");
   const [books, setBooks] = useState([]);
+  const [booksLoading, setBooksLoading] = useState(false);
 
   const handleSearchFormSubmit = async (e) => {
     try {
       e.preventDefault();
       const trimmedSearch = search.trim();
-      if (!trimmedSearch) {
+      if (!trimmedSearch || booksLoading) {
         return;
       }
-      const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${trimmedSearch}`;
-      const res = await axios.get(searchUrl);
-      setBooks(res.data.items || []);
-    } catch (error) {}
+      setBooksLoading(true);
+      const books = await searchForBooks(trimmedSearch);
+      setBooks(books || []);
+      setBooksLoading(false);
+    } catch (error) {
+      setBooksLoading(false);
+      console.error(error);
+    }
 
     // get the search term
     // if search is empty do nothing
@@ -35,6 +40,7 @@ function SearchPage() {
         search={search}
         onSearchChange={(e) => setSearch(e.target.value)}
         onSubmit={handleSearchFormSubmit}
+        booksLoading={booksLoading}
       />
       <BookList books={books} />
     </Wrapper>

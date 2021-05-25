@@ -1,6 +1,6 @@
 import Section from "../Section";
 
-function SearchForm({ search, onSearchChange, onSubmit }) {
+function SearchForm({ search, onSearchChange, onSubmit, booksLoading }) {
   return (
     <Section title="Book Search">
       <form className="" onSubmit={onSubmit}>
@@ -13,12 +13,25 @@ function SearchForm({ search, onSearchChange, onSubmit }) {
             id="search"
             value={search}
             onChange={onSearchChange}
+            disabled={booksLoading}
           />
           <button
             className="btn btn-outline-primary mt-2 ml-auto px-4 "
             type="submit"
+            disabled={booksLoading}
           >
-            Search
+            {booksLoading ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm mr-2"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Loading...
+              </>
+            ) : (
+              "Search"
+            )}
           </button>
         </div>
       </form>
