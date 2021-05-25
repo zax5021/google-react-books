@@ -1,9 +1,9 @@
 import Section from "../Section";
 
-function SearchForm() {
+function SearchForm({ search, onSearchChange, onSubmit }) {
   return (
     <Section title="Book Search">
-      <form className="">
+      <form className="" onSubmit={onSubmit}>
         <div className="form-group d-flex flex-column">
           <input
             className="form-control mt-4"
@@ -11,6 +11,8 @@ function SearchForm() {
             placeholder="Enter Book Here"
             aria-label="Search"
             id="search"
+            value={search}
+            onChange={onSearchChange}
           />
           <button
             className="btn btn-outline-primary mt-2 ml-auto px-4 "
