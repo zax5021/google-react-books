@@ -5,10 +5,13 @@ const appRouter = require("./router");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-mongoose.connect("mongodb://localhost/google_books_db", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/google_books_db",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
