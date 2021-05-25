@@ -1,4 +1,13 @@
-function BookCard({ title, authors, description, image, link }) {
+function BookCard({
+  id,
+  title,
+  authors,
+  description,
+  image,
+  link,
+  saveBtn,
+  deleteBtn,
+}) {
   return (
     <div className="card mb-3">
       <div className="row align-items-center">
@@ -19,9 +28,24 @@ function BookCard({ title, authors, description, image, link }) {
               >
                 View
               </a>
-              <a href="#" className="btn btn-secondary px-4">
-                Save
-              </a>
+              {saveBtn && (
+                <button
+                  value={id}
+                  className="btn btn-secondary px-4"
+                  onClick={saveBtn}
+                >
+                  Save
+                </button>
+              )}
+              {deleteBtn && (
+                <button
+                  value={id}
+                  className="btn btn-danger px-4"
+                  onClick={deleteBtn}
+                >
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         </div>

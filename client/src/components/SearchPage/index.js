@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { searchForBooks } from "../../util/googleBooksApi";
+import API from "../../util/dbRoutes";
 import Hero from "../Hero";
 import BookList from "../BookList";
 import SearchForm from "../SearchForm";
@@ -31,8 +32,28 @@ function SearchPage() {
     // if search term has one letter
     // create url for google books api
     // if response update books with the results
-    //
+
+    // Save Book (handleSaveBook)
+    // get target book id from save button
+    // get full book object from book id
+    // await POST saveBook
   };
+  const handleSaveBook = async (e) => {
+    try {
+      e.preventDefault();
+      const id = e.target.value;
+      const currentBook = books.filter((book) => book.id === id);
+      const savedBook = currentBook[0];
+      await API.saveBook(savedBook);
+      setBooks(books.filter((book) => book.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //
+  //
+
   return (
     <Wrapper>
       <Hero />
@@ -42,7 +63,7 @@ function SearchPage() {
         onSubmit={handleSearchFormSubmit}
         booksLoading={booksLoading}
       />
-      <BookList books={books} />
+      <BookList books={books} handleSaveBook={handleSaveBook} />
     </Wrapper>
   );
 }
