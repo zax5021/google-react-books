@@ -3,8 +3,10 @@ const { Book } = require("../models");
 
 apiRouter.post("/books", async (req, res) => {
   try {
-    const { title, authors, description, image, link } = req.body;
+    const { id, title, authors, description, image, link } = req.body;
+    console.log(req.body);
     const book = await Book.create({
+      id,
       title,
       authors,
       description,

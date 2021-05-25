@@ -25,6 +25,10 @@ const bookSchema = new Schema({
     type: String,
     trim: true,
   },
+  id: {
+    type: String,
+    trim: true,
+  },
 });
 
 const Book = mongoose.model("Book", bookSchema);

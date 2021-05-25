@@ -7,6 +7,7 @@ function BookList({ books, handleSaveBook, handleDeleteBook }) {
       {books.length > 0 ? (
         books.map((book) => (
           <BookCard
+            key={book.id}
             {...book}
             saveBtn={handleSaveBook}
             deleteBtn={handleDeleteBook}
