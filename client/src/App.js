@@ -7,11 +7,12 @@ import {
 import SearchPage from "./components/SearchPage";
 import SavedPage from "./components/SavedPage";
 import { useEffect } from "react";
+import Navbar from "./components/Navbar";
 
 function App() {
-  useEffect();
   return (
     <Router>
+      <Navbar />
       <Switch>
         <Route exact path="/">
           <SearchPage />
