@@ -6,8 +6,10 @@ import {
 } from "react-router-dom";
 import SearchPage from "./components/SearchPage";
 import SavedPage from "./components/SavedPage";
+import { useEffect } from "react";
 
 function App() {
+  useEffect();
   return (
     <Router>
       <Switch>
